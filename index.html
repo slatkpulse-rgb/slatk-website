@@ -1,76 +1,178 @@
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>SLATK | Model Agency</title>
-  <style>
-    * { box-sizing: border-box; margin: 0; padding: 0; }
-    body { font-family: Arial, sans-serif; background: #f8f5f2; color: #222; }
-    header { padding: 25px 8%; display: flex; justify-content: space-between; align-items: center; }
-    .logo { font-size: 30px; letter-spacing: 5px; font-weight: bold; }
-    nav a { margin-left: 22px; color: #222; text-decoration: none; }
-    .hero { padding: 90px 8%; background: #e9dfd7; text-align: center; }
-    .hero h1 { font-size: clamp(40px, 7vw, 76px); letter-spacing: 3px; }
-    .hero p { margin: 20px auto; max-width: 550px; line-height: 1.7; }
-    .btn { display: inline-block; background: #222; color: white; padding: 14px 25px; text-decoration: none; margin-top: 15px; }
-    section { padding: 65px 8%; }
-    h2 { font-size: 32px; margin-bottom: 20px; }
-    .models { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 20px; }
-    .model { background: #e8ded6; padding: 55px 20px; text-align: center; min-height: 180px; }
-    .services { line-height: 2; }
-    footer { background: #222; color: white; text-align: center; padding: 30px; }
-  </style>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>SLATK | Model Agency</title>
+
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600&family=Playfair+Display:wght@400;500;600&display=swap" rel="stylesheet">
+
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{background:#090909;color:#f8f3ec;font-family:'DM Sans',sans-serif}
+a{text-decoration:none;color:inherit}
+:root{--gold:#d9b98c;--cream:#f8f3ec;--black:#090909}
+header{height:80px;padding:0 5%;display:flex;align-items:center;justify-content:space-between;border-bottom:1px solid #29231d;background:#090909}
+.logo{font-family:'Playfair Display',serif;font-size:32px;letter-spacing:7px}
+.logo small{display:block;font-family:'DM Sans',sans-serif;font-size:9px;letter-spacing:5px;text-align:center}
+nav{display:flex;gap:28px;font-size:13px}
+nav a:hover{color:var(--gold)}
+.join{border:1px solid var(--gold);padding:12px 20px;border-radius:30px;font-size:12px}
+.hero{min-height:570px;display:flex;align-items:center;padding:70px 6%;position:relative;background:linear-gradient(90deg,#090909 0%,#090909e8 35%,#09090920 100%),url('https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&w=1800&q=85') center 35%/cover}
+.hero-content{max-width:570px}
+.eyebrow{font-size:12px;letter-spacing:5px;color:var(--gold);margin-bottom:20px}
+.hero h1{font-family:'Playfair Display',serif;font-size:clamp(55px,9vw,110px);font-weight:400;line-height:.95}
+.hero h2{font-size:14px;letter-spacing:6px;margin-top:24px;font-weight:400}
+.hero p{max-width:420px;line-height:1.8;color:#d5d0ca;margin:22px 0}
+.btn{display:inline-block;background:var(--gold);color:#111;padding:15px 28px;border-radius:30px;font-size:12px;font-weight:600;letter-spacing:1px}
+.btn:hover{background:#f0d4ad}
+section{padding:75px 6%}
+.section-title{font-family:'Playfair Display',serif;font-size:38px;font-weight:400;color:var(--gold);margin-bottom:15px}
+.about{display:grid;grid-template-columns:1fr 1fr;gap:60px;align-items:center;border-bottom:1px solid #30271e}
+.about p{line-height:1.9;color:#c9c4be}
+.about-image{height:330px;background:url('https://images.unsplash.com/photo-1524504388940-b1c1722653e1?auto=format&fit=crop&w=1000&q=85') center/cover}
+.models{text-align:center}
+.subtitle{color:#b8b0a7;margin-bottom:35px}
+.model-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:18px}
+.model-card{position:relative;overflow:hidden;background:#211c18}
+.model-card img{width:100%;height:340px;object-fit:cover;display:block;transition:transform .5s}
+.model-card:hover img{transform:scale(1.05)}
+.model-name{padding:15px;background:#12100e;font-family:'Playfair Display',serif;font-size:18px}
+.services{background:#100e0c}
+.service-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:25px;margin-top:35px}
+.service{border-top:1px solid #66513b;padding:25px 5px}
+.service span{font-size:27px;color:var(--gold)}
+.service h3{font-family:'Playfair Display',serif;font-size:20px;font-weight:400;margin:15px 0}
+.service p{font-size:13px;line-height:1.7;color:#bdb5ac}
+.cta{text-align:center;background:linear-gradient(#090909d9,#090909e8),url('https://images.unsplash.com/photo-1529139574466-a303027c1d8b?auto=format&fit=crop&w=1600&q=85') center/cover}
+.cta p{color:#c7bfb5;margin:15px 0 25px}
+footer{padding:30px 6%;border-top:1px solid #30271e;display:flex;justify-content:space-between;align-items:center;gap:20px}
+footer p{font-size:11px;color:#aaa}
+footer .logo{font-size:25px}
+@media(max-width:800px){
+nav{display:none}
+.hero{min-height:520px;background-position:60% center}
+.about{grid-template-columns:1fr;gap:25px}
+.model-grid{grid-template-columns:repeat(2,1fr)}
+.model-card img{height:270px}
+.service-grid{grid-template-columns:repeat(2,1fr)}
+}
+@media(max-width:480px){
+header{height:70px}
+.logo{font-size:25px}
+.hero h1{font-size:60px}
+.hero h2{letter-spacing:3px;font-size:11px}
+section{padding:55px 5%}
+.section-title{font-size:32px}
+.model-card img{height:220px}
+.service-grid{gap:12px}
+footer{flex-direction:column;text-align:center}
+}
+</style>
 </head>
+
 <body>
-  <header>
-    <div class="logo">SLATK</div>
-    <nav>
-      <a href="#about">About</a>
-      <a href="#models">Models</a>
-      <a href="#services">Services</a>
-      <a href="#contact">Contact</a>
-    </nav>
-  </header>
 
-  <div class="hero">
-    <h1>YOUR FACE.<br>YOUR STORY.</h1>
-    <p>SLATK is a model agency connecting fresh talent with creative opportunities in fashion, photoshoots and digital campaigns.</p>
-    <a class="btn" href="#contact">JOIN SLATK</a>
+<header>
+  <a href="#" class="logo">SLATK<small>MODEL AGENCY</small></a>
+  <nav>
+    <a href="#home">Home</a>
+    <a href="#about">About</a>
+    <a href="#models">Our Models</a>
+    <a href="#services">Services</a>
+    <a href="#contact">Join Us</a>
+  </nav>
+  <a class="join" href="#contact">JOIN SLATK ↗</a>
+</header>
+
+<main>
+<div class="hero" id="home">
+  <div class="hero-content">
+    <div class="eyebrow">MODEL AGENCY</div>
+    <h1>SLATK</h1>
+    <h2>YOUR FACE. YOUR STORY.</h2>
+    <p>Connecting fresh talent with fashion, lifestyle and creative opportunities. Your journey to the spotlight starts here.</p>
+    <a class="btn" href="#contact">BECOME A MODEL ↗</a>
   </div>
+</div>
 
-  <section id="about">
-    <h2>About SLATK</h2>
-    <p>We believe every individual has a unique identity. SLATK helps aspiring models showcase their talent, build their portfolio and explore creative opportunities.</p>
-  </section>
+<section class="about" id="about">
+  <div>
+    <div class="eyebrow">WHO WE ARE</div>
+    <h2 class="section-title">ABOUT SLATK</h2>
+    <p>We believe every individual has a unique identity. SLATK is a model agency dedicated to discovering fresh talent, building confidence and creating opportunities in the world of fashion and modelling.</p>
+    <p style="margin-top:15px">From portfolio shoots to brand collaborations, we help aspiring models take their next step.</p>
+  </div>
+  <div class="about-image"></div>
+</section>
 
-  <section id="models">
-    <h2>Our Talent</h2>
-    <div class="models">
-      <div class="model">Model Portfolio 01</div>
-      <div class="model">Model Portfolio 02</div>
-      <div class="model">Model Portfolio 03</div>
+<section class="models" id="models">
+  <div class="eyebrow">MEET OUR TALENT</div>
+  <h2 class="section-title">OUR MODELS</h2>
+  <p class="subtitle">Real people. Unique stories. Endless possibilities.</p>
+  <div class="model-grid">
+    <div class="model-card">
+      <img src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&w=700&q=85" alt="Fashion model">
+      <div class="model-name">Fashion & Editorial</div>
     </div>
-  </section>
-
-  <section id="services">
-    <h2>What We Do</h2>
-    <div class="services">
-      <p>✦ Model Portfolio & Photoshoots</p>
-      <p>✦ Fashion & Brand Campaigns</p>
-      <p>✦ Influencer Collaborations</p>
-      <p>✦ Talent Development & Promotion</p>
+    <div class="model-card">
+      <img src="https://images.unsplash.com/photo-1524504388940-b1c1722653e1?auto=format&fit=crop&w=700&q=85" alt="Portrait model">
+      <div class="model-name">Lifestyle Model</div>
     </div>
-  </section>
+    <div class="model-card">
+      <img src="https://images.unsplash.com/photo-1529139574466-a303027c1d8b?auto=format&fit=crop&w=700&q=85" alt="Fashion campaign model">
+      <div class="model-name">Campaign Model</div>
+    </div>
+    <div class="model-card">
+      <img src="https://images.unsplash.com/photo-1517841905240-472988babdf9?auto=format&fit=crop&w=700&q=85" alt="Beauty model">
+      <div class="model-name">Beauty & Portrait</div>
+    </div>
+  </div>
+</section>
 
-  <section id="contact">
-    <h2>Become a SLATK Model</h2>
-    <p>Ready to begin your journey? Connect with us and introduce yourself.</p>
-    <a class="btn" href="https://www.instagram.com/slatk/" target="_blank">CONTACT ON INSTAGRAM</a>
-  </section>
+<section class="services" id="services">
+  <div class="eyebrow">OUR EXPERTISE</div>
+  <h2 class="section-title">WHAT WE DO</h2>
+  <p class="subtitle">More than a model agency.</p>
+  <div class="service-grid">
+    <div class="service">
+      <span>✧</span>
+      <h3>Model Portfolio</h3>
+      <p>Professional shoots to showcase your unique look and personality.</p>
+    </div>
+    <div class="service">
+      <span>✧</span>
+      <h3>Fashion Campaigns</h3>
+      <p>Creative opportunities with fashion and lifestyle brands.</p>
+    </div>
+    <div class="service">
+      <span>✧</span>
+      <h3>Influencer Collabs</h3>
+      <p>Connect with brands and create engaging digital content.</p>
+    </div>
+    <div class="service">
+      <span>✧</span>
+      <h3>Talent Development</h3>
+      <p>Guidance to help you grow your confidence and career.</p>
+    </div>
+  </div>
+</section>
 
-  <footer>
-    <p>© 2026 SLATK Model Agency | All Rights Reserved</p>
-  </footer>
+<section class="cta" id="contact">
+  <div class="eyebrow">YOUR JOURNEY STARTS HERE</div>
+  <h2 class="section-title">READY TO JOIN SLATK?</h2>
+  <p>Take the first step towards your modelling journey.</p>
+  <a class="btn" href="https://www.instagram.com/slatk/" target="_blank" rel="noopener">REGISTER YOUR INTEREST ↗</a>
+</section>
+</main>
+
+<footer>
+  <a href="#" class="logo">SLATK<small>MODEL AGENCY</small></a>
+  <p>DREAM • POSE • SHINE</p>
+  <p>© 2026 SLATK Model Agency</p>
+</footer>
+
 </body>
 </html>
